@@ -1,0 +1,7 @@
+.env
+.DS_store
+.venv
+.mypy_cache
+.idea
+.vscode/launch.json
+celerybeat-schedule.db

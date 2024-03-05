@@ -1,0 +1,18 @@
+name: Build and Push Images
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  redeploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          clean: false
+      - name: Pull & Start
+        run: |
+          cd deployment/docker_compose
+          docker compose -f docker-compose.prod.yml -p danswer-stack up -d --build --force-recreate
