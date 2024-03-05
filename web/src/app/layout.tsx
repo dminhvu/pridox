@@ -1,8 +1,8 @@
 import "./globals.css";
 
-import { Inter, Roboto } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Metadata, Viewport } from "next";
+import { Roboto } from "next/font/google";
 
 const roboto = Roboto({
   weight: "500",
@@ -118,7 +118,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  generator: "Next.js 14.1.0",
+  generator: "Next.js 14.1.2",
 };
 
 export const dynamic = "force-dynamic";
@@ -128,11 +128,11 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-    return (
+  return (
     <ClerkProvider>
       <html lang="en">
         <body className={`${roboto.className} bg-background text-default`}>
-                    {children}
+          {children}
         </body>
       </html>
     </ClerkProvider>
