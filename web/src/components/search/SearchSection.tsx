@@ -1,28 +1,27 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { SearchBar } from "./SearchBar";
-import { SearchResultsDisplay } from "./SearchResultsDisplay";
-import { SourceSelector } from "./filtering/Filters";
-import { Connector, DocumentSet, Tag } from "@/lib/types";
+import { Persona } from "@/app/admin/personas/interfaces";
+import { computeAvailableFilters } from "@/lib/filters";
+import { useFilters, useObjectState } from "@/lib/hooks";
+import { CancellationToken, cancellable } from "@/lib/search/cancellable";
 import {
-  DanswerDocument,
-  Quote,
-  SearchResponse,
   FlowType,
-  SearchType,
+  PridoxDocument,
+  Quote,
   SearchDefaultOverrides,
   SearchRequestOverrides,
+  SearchResponse,
+  SearchType,
   ValidQuestionResponse,
 } from "@/lib/search/interfaces";
 import { searchRequestStreamed } from "@/lib/search/streamingQa";
-import { SearchHelper } from "./SearchHelper";
-import { CancellationToken, cancellable } from "@/lib/search/cancellable";
-import { useFilters, useObjectState } from "@/lib/hooks";
 import { questionValidationStreamed } from "@/lib/search/streamingQuestionValidation";
-import { Persona } from "@/app/admin/personas/interfaces";
+import { Connector, DocumentSet, Tag } from "@/lib/types";
+import { useRef, useState } from "react";
 import { PersonaSelector } from "./PersonaSelector";
-import { computeAvailableFilters } from "@/lib/filters";
+import { SearchBar } from "./SearchBar";
+import { SearchHelper } from "./SearchHelper";
+import { SearchResultsDisplay } from "./SearchResultsDisplay";
 
 const SEARCH_DEFAULT_OVERRIDES_START: SearchDefaultOverrides = {
   forceDisplayQA: false,
@@ -107,7 +106,7 @@ export const SearchSection = ({
       ...(prevState || initialSearchResponse),
       quotes,
     }));
-  const updateDocs = (documents: DanswerDocument[]) =>
+  const updateDocs = (documents: PridoxDocument[]) =>
     setSearchResponse((prevState) => ({
       ...(prevState || initialSearchResponse),
       documents,
@@ -212,8 +211,8 @@ export const SearchSection = ({
   };
 
   return (
-    <div className="relative max-w-[2000px] xl:max-w-[1430px] mx-auto">
-      <div className="absolute left-0 hidden 2xl:block w-52 3xl:w-64">
+    <div className="relative mx-auto max-w-[2000px] xl:max-w-[1430px]">
+      <div className="absolute left-0 hidden w-52 2xl:block 3xl:w-64">
         {/* {(connectors.length > 0 || documentSets.length > 0) && (
           <SourceSelector
             {...filterManager}
@@ -246,9 +245,9 @@ export const SearchSection = ({
           />
         </div>
       </div>
-      <div className="w-[720px] 3xl:w-[800px] mx-auto">
+      <div className="mx-auto w-[720px] 3xl:w-[800px]">
         {personas.length > 0 ? (
-          <div className="flex mb-2 w-fit">
+          <div className="mb-2 flex w-fit">
             <PersonaSelector
               personas={personas}
               selectedPersonaId={selectedPersona}

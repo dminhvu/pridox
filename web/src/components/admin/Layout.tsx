@@ -1,16 +1,9 @@
-import { Header } from "@/components/Header";
 import { AdminSidebar } from "@/components/admin/connectors/AdminSidebar";
 import {
-  NotebookIcon,
-  KeyIcon,
-  UsersIcon,
-  ThumbsUpIcon,
-  BookmarkIcon,
-  CPUIcon,
-  ZoomInIcon,
   RobotIcon,
-  ConnectorIcon,
-  SlackIcon,
+  ThumbsUpIcon,
+  UsersIcon,
+  ZoomInIcon,
 } from "@/components/icons/icons";
 import { User } from "@/lib/types";
 import {
@@ -18,8 +11,22 @@ import {
   getAuthTypeMetadataSS,
   getCurrentUserSS,
 } from "@/lib/userSS";
+import Link from "next/link";
 import { redirect } from "next/navigation";
-import { FiCpu, FiLayers, FiPackage, FiSlack } from "react-icons/fi";
+import { FiCpu, FiPackage, FiSlack } from "react-icons/fi";
+import {
+  IoArrowBack,
+  IoBookmark,
+  IoBookmarkOutline,
+  IoCloudUpload,
+  IoCloudUploadOutline,
+  IoCompass,
+  IoCompassOutline,
+  IoDocumentText,
+  IoDocumentTextOutline,
+  IoHeart,
+  IoSearch,
+} from "react-icons/io5";
 
 export async function Layout({ children }: { children: React.ReactNode }) {
   const tasks = [getAuthTypeMetadataSS(), getCurrentUserSS()];
@@ -45,132 +52,98 @@ export async function Layout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="h-screen overflow-y-hidden">
-      <div className="flex h-full pt-16">
-        <div className="h-full w-80 border-r border-border pb-8 pt-12">
-          <AdminSidebar
-            collections={[
-              {
-                name: "Connectors",
-                items: [
-                  {
-                    name: (
-                      <div className="flex">
-                        <NotebookIcon size={18} />
-                        <div className="ml-1">Existing Connectors</div>
-                      </div>
-                    ),
-                    link: "/admin/indexing/status",
-                  },
-                  {
-                    name: (
-                      <div className="flex">
-                        <ConnectorIcon size={18} />
-                        <div className="ml-1.5">Add Connector</div>
-                      </div>
-                    ),
-                    link: "/admin/add-connector",
-                  },
-                ],
-              },
-              {
-                name: "Document Management",
-                items: [
-                  {
-                    name: (
-                      <div className="flex">
-                        <BookmarkIcon size={18} />
-                        <div className="ml-1">Document Sets</div>
-                      </div>
-                    ),
-                    link: "/admin/documents/sets",
-                  },
-                  {
-                    name: (
-                      <div className="flex">
-                        <ZoomInIcon size={18} />
-                        <div className="ml-1">Explorer</div>
-                      </div>
-                    ),
-                    link: "/admin/documents/explorer",
-                  },
-                  {
-                    name: (
-                      <div className="flex">
-                        <ThumbsUpIcon size={18} />
-                        <div className="ml-1">Feedback</div>
-                      </div>
-                    ),
-                    link: "/admin/documents/feedback",
-                  },
-                ],
-              },
-              {
-                name: "Custom Assistants",
-                items: [
-                  {
-                    name: (
-                      <div className="flex">
-                        <RobotIcon size={18} />
-                        <div className="ml-1">Personas</div>
-                      </div>
-                    ),
-                    link: "/admin/personas",
-                  },
-                  {
-                    name: (
-                      <div className="flex">
-                        <FiSlack size={18} />
-                        <div className="ml-1">Slack Bots</div>
-                      </div>
-                    ),
-                    link: "/admin/bot",
-                  },
-                ],
-              },
-              {
-                name: "Model Configs",
-                items: [
-                  {
-                    name: (
-                      <div className="flex">
-                        <FiCpu size={18} />
-                        <div className="ml-1">LLM</div>
-                      </div>
-                    ),
-                    link: "/admin/keys/openai",
-                  },
-                  {
-                    name: (
-                      <div className="flex">
-                        <FiPackage size={18} />
-                        <div className="ml-1">Embedding</div>
-                      </div>
-                    ),
-                    link: "/admin/models/embedding",
-                  },
-                ],
-              },
-              {
-                name: "User Management",
-                items: [
-                  {
-                    name: (
-                      <div className="flex">
-                        <UsersIcon size={18} />
-                        <div className="ml-1">Users</div>
-                      </div>
-                    ),
-                    link: "/admin/users",
-                  },
-                ],
-              },
-            ]}
-          />
-        </div>
-        <div className="h-full w-full overflow-y-auto px-12 pb-8 pt-8">
-          {children}
-        </div>
+    <div className="flex flex-row">
+      <div className="mt-10 flex h-full w-full max-w-xs flex-col gap-10 px-8">
+        <Link
+          title="Back to Dashboard"
+          className="flex w-full flex-row items-center gap-2 rounded-lg border border-primary-600 px-4 py-2 font-bold tracking-tight text-primary-600 duration-200 hover:bg-primary-600 hover:text-white"
+          href="/dashboard/chat"
+        >
+          <IoArrowBack size={18} />
+          <span>Go to Dashboard</span>
+        </Link>
+        <AdminSidebar
+          collections={[
+            {
+              name: "Connectors",
+              items: [
+                {
+                  name: "Existing Connectors",
+                  icon: <IoDocumentText />,
+                  link: "/admin/indexing/status",
+                },
+                {
+                  name: "Add Connector",
+                  icon: <IoCloudUpload />,
+                  link: "/admin/add-connector",
+                },
+              ],
+            },
+            {
+              name: "Document Management",
+              items: [
+                {
+                  name: "Document Sets",
+                  icon: <IoBookmark />,
+                  link: "/admin/documents/sets",
+                },
+                {
+                  name: "Explorer",
+                  icon: <IoSearch />,
+                  link: "/admin/documents/explorer",
+                },
+                {
+                  name: "Feedback",
+                  icon: <IoHeart />,
+                  link: "/admin/documents/feedback",
+                },
+              ],
+            },
+            {
+              name: "Custom Assistants",
+              items: [
+                {
+                  name: "Personas",
+                  icon: <RobotIcon size={18} />,
+                  link: "/admin/personas",
+                },
+                {
+                  name: "Slack Bots",
+                  icon: <FiSlack size={18} />,
+                  link: "/admin/bot",
+                },
+              ],
+            },
+            {
+              name: "Model Configs",
+              items: [
+                {
+                  name: "LLM",
+                  icon: <FiCpu size={18} />,
+                  link: "/admin/keys/openai",
+                },
+                {
+                  name: "Embedding",
+                  icon: <FiPackage size={18} />,
+                  link: "/admin/models/embedding",
+                },
+              ],
+            },
+            {
+              name: "User Management",
+              items: [
+                {
+                  name: "Users",
+                  icon: <UsersIcon size={18} />,
+                  link: "/admin/users",
+                },
+              ],
+            },
+          ]}
+        />
+      </div>
+      <div className="h-full w-full overflow-y-auto px-12 pb-8 pt-8">
+        {children}
       </div>
     </div>
   );

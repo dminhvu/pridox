@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FiStopCircle } from "react-icons/fi";
 import { AIMessage, HumanMessage } from "./message/Messages";
-import { AnswerPiecePacket, DanswerDocument } from "@/lib/search/interfaces";
+import { AnswerPiecePacket, PridoxDocument } from "@/lib/search/interfaces";
 import {
   BackendChatSession,
   BackendMessage,
@@ -28,13 +28,13 @@ import {
 import { ThreeDots } from "react-loader-spinner";
 import { FeedbackModal } from "./modal/FeedbackModal";
 import { DocumentSidebar } from "./documentSidebar/DocumentSidebar";
-import { Persona } from "../admin/personas/interfaces";
+import { Persona } from "@/app/admin/personas/interfaces";
 import { useFilters } from "@/lib/hooks";
 import { DocumentSet, Tag, ValidSources } from "@/lib/types";
 import { buildFilters } from "@/lib/search/utils";
 import { usePopup } from "@/components/admin/connectors/Popup";
 import { ResizableSection } from "@/components/resizable/ResizableSection";
-import { DanswerInitializingLoader } from "@/components/DanswerInitializingLoader";
+import { PridoxInitializingLoader } from "@/components/PridoxInitializingLoader";
 import { ChatIntro } from "./ChatIntro";
 import { HEADER_PADDING } from "@/lib/constants";
 import { computeAvailableFilters } from "@/lib/filters";
@@ -345,7 +345,7 @@ export const Chat = ({
       selectedDocuments.length > 0
         ? RetrievalType.SelectedDocs
         : RetrievalType.None;
-    let documents: DanswerDocument[] = selectedDocuments;
+    let documents: PridoxDocument[] = selectedDocuments;
     let error: string | null = null;
     let finalMessage: BackendMessage | null = null;
     try {
@@ -534,11 +534,10 @@ export const Chat = ({
                     selectedPersona={selectedPersona}
                     handlePersonaSelect={(persona) => {
                       setSelectedPersona(persona);
-                      router.push(`/chat?personaId=${persona.id}`);
+                      router.push(`/dashboard/chat?personaId=${persona.id}`);
                     }}
                   />
                 )}
-
               <div
                 className={
                   "mx-8 mt-4 pt-12 sm:pt-0" +
@@ -707,24 +706,24 @@ export const Chat = ({
                 </div> */}
 
                 <div className="mx-auto mb-2 flex max-w-screen-lg justify-center py-2">
-                  <div className="relative mx-auto flex w-full w-searchbar-xs shrink items-center px-4 2xl:w-searchbar-sm 3xl:w-searchbar">
+                  <div className="relative mx-auto flex w-full shrink items-center px-4 2xl:w-searchbar-sm 3xl:w-searchbar">
                     <textarea
                       ref={textareaRef}
                       autoFocus
                       className={`
                       flex
-                      h-14
+                      h-full
                       w-full
                       max-w-[682px]
-                      shrink 
+                      shrink
                       overflow-hidden 
-                      whitespace-nowrap
-                      rounded-full 
-                      border-[0.9px]
+                      whitespace-nowrap 
+                      rounded-full
+                      border-[0.9px] 
                       border-solid
-                      border-slate-200 
-                      py-4 
-                      pl-4 
+                      border-slate-200
+                      px-5 
+                      py-4
                       text-blue-950 
                       placeholder-gray-400 
                       outline-none
@@ -785,7 +784,7 @@ export const Chat = ({
                               (message ? "bg-blue-200" : "")
                             }
                           >
-                            Submit
+                            Ask Now
                           </button>
                         )}
                       </div>
@@ -815,7 +814,7 @@ export const Chat = ({
       ) : (
         <div className="mx-auto flex h-full flex-col">
           <div className="my-auto">
-            <DanswerInitializingLoader />
+            <PridoxInitializingLoader />
           </div>
         </div>
       )}

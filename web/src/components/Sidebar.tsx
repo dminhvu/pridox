@@ -2,6 +2,8 @@
 import { HEADER_PADDING } from "@/lib/constants";
 import { User } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { DashboardIcon } from "@radix-ui/react-icons";
+import { Menu, MenuSquare } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,9 +11,8 @@ import {
   HiOutlineChatBubbleOvalLeftEllipsis,
   HiOutlineFolder,
   HiOutlineMagnifyingGlass,
-  HiOutlineSquares2X2,
-  HiOutlineUserGroup,
 } from "react-icons/hi2";
+import { IoSettingsOutline } from "react-icons/io5";
 
 interface SidebarProps {
   user: User | null;
@@ -94,7 +95,7 @@ export const Sidebar = ({ user }: SidebarProps) => {
     <div className="z-10 h-screen p-3">
       <div
         className={cn(
-          "z-30 flex h-full w-fit flex-col items-center rounded-2xl bg-white px-3 shadow-2xl transition-transform",
+          "z-30 flex h-full w-fit flex-col items-center rounded-2xl bg-white px-3 shadow-lg transition-transform",
           HEADER_PADDING
         )}
         id="chat-sidebar"
@@ -130,24 +131,23 @@ export const Sidebar = ({ user }: SidebarProps) => {
             Get started with PRO
           </button>
         </article> */}
-        <section className="my-4 flex max-w-[231px] items-center justify-between gap-5 whitespace-nowrap rounded-[60px] bg-white p-3.5 text-center text-sm font-bold leading-3 text-blue-950 shadow-2xl">
+        <section className="mb-4 mt-auto flex max-w-xs items-center justify-between gap-5 whitespace-nowrap rounded-full border border-primary-500 bg-white p-3.5 text-center text-sm font-bold leading-3 text-blue-950">
           <div className="flex items-center gap-2">
             <Image
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/698e29a4d41dd341c103c0497626fe0bf3347bb6b2e98c9b5929e9f6f3613e1d?apiKey=16ade88c6ea04069b345a88d63d1f2a2&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/698e29a4d41dd341c103c0497626fe0bf3347bb6b2e98c9b5929e9f6f3613e1d?apiKey=16ade88c6ea04069b345a88d63d1f2a2&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/698e29a4d41dd341c103c0497626fe0bf3347bb6b2e98c9b5929e9f6f3613e1d?apiKey=16ade88c6ea04069b345a88d63d1f2a2&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/698e29a4d41dd341c103c0497626fe0bf3347bb6b2e98c9b5929e9f6f3613e1d?apiKey=16ade88c6ea04069b345a88d63d1f2a2&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/698e29a4d41dd341c103c0497626fe0bf3347bb6b2e98c9b5929e9f6f3613e1d?apiKey=16ade88c6ea04069b345a88d63d1f2a2&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/698e29a4d41dd341c103c0497626fe0bf3347bb6b2e98c9b5929e9f6f3613e1d?apiKey=16ade88c6ea04069b345a88d63d1f2a2&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/698e29a4d41dd341c103c0497626fe0bf3347bb6b2e98c9b5929e9f6f3613e1d?apiKey=16ade88c6ea04069b345a88d63d1f2a2&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/698e29a4d41dd341c103c0497626fe0bf3347bb6b2e98c9b5929e9f6f3613e1d?apiKey=16ade88c6ea04069b345a88d63d1f2a2&"
               alt="Profile"
-              width={31}
-              height={31}
-              loading="lazy"
+              width={32}
+              height={32}
             />
             <div className="flex grow">{user?.email?.split("@")[0]}</div>
           </div>
-          <Image
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/525be62805c4c771f70a5f1651287f81be6291d4f7605de92560b07461b8a510?apiKey=16ade88c6ea04069b345a88d63d1f2a2&"
-            alt="Settings"
-            width={30}
-            height={30}
-            loading="lazy"
-          />
+          <Link
+            href="/admin"
+            title="Admin"
+            className="rounded-full bg-primary-600 p-2 text-white duration-200 hover:bg-primary-700"
+          >
+            <IoSettingsOutline width={20} height={20} />
+          </Link>
         </section>
       </div>
     </div>

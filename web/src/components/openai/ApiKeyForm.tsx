@@ -64,13 +64,15 @@ export const ApiKeyForm = ({ handleResponse }: Props) => {
               <TextFormField
                 name="apiKey"
                 type="password"
-                label="OpenAI API Key:"
+                label="OpenAI API Key"
+                placeholder="Enter your OpenAI API key"
               />
-              <div className="flex">
+              <div className="flex justify-center">
                 <Button
+                  title="Submit API key"
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-64 mx-auto"
+                  className="w-fit rounded-xl border-none bg-primary-500 px-4 py-2.5 text-white duration-200 hover:bg-primary-600"
                 >
                   Submit
                 </Button>

@@ -36,7 +36,7 @@ export function WelcomeModal({
           <>
             To get started, the first step is to choose your{" "}
             <i>embedding model</i>. This machine learning model helps power
-            Danswer&apos;s search. Different models have different strengths,
+            Pridox&apos;s search. Different models have different strengths,
             but don&apos;t worry we&apos;ll guide you through the process of
             choosing the right one for your organization.
           </>
@@ -54,9 +54,9 @@ export function WelcomeModal({
           Step 2: Add Your First Connector
         </Text>
         Next, we need to to configure some <i>connectors</i>. Connectors are the
-        way that Danswer gets data from your organization&apos;s various data
+        way that Pridox gets data from your organization&apos;s various data
         sources. Once setup, we&apos;ll automatically sync data from your apps
-        and docs into Danswer, so you can search all through all of them in one
+        and docs into Pridox, so you can search all through all of them in one
         place.
         <div className="mt-3 flex">
           <Link href="/admin/add-connector">

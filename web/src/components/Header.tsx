@@ -18,7 +18,7 @@ export const Header: React.FC<HeaderProps> = () => {
               <Image src="/logo.png" alt="Logo" width="1419" height="1520" />
             </div>
             <h1 className="flex text-2xl text-strong font-bold my-auto">
-              Danswer
+              Pridox
             </h1>
           </div>
         </Link>
@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = () => {
           </div>
         </Link>
 
-        <Link href="/chat" className="h-full flex flex-col hover:bg-hover">
+        <Link href="/dashboard/chat" className="h-full flex flex-col hover:bg-hover">
           <div className="w-24 flex my-auto">
             <div className="mx-auto flex text-strong px-2">
               <FiMessageSquare className="my-auto mr-1" />

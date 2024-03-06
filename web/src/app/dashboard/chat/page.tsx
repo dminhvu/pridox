@@ -1,7 +1,5 @@
-import { InstantSSRAutoRefresh } from "@/components/SSRAutoRefresh";
 import { SwitchModelModal } from "@/components/SwitchModelModal";
 import { WelcomeModal } from "@/components/WelcomeModal";
-import { ApiKeyModal } from "@/components/openai/ApiKeyModal";
 import { DOCUMENT_SIDEBAR_WIDTH_COOKIE_NAME } from "@/components/resizable/contants";
 import { Connector, DocumentSet, Tag, User, ValidSources } from "@/lib/types";
 import {
@@ -10,17 +8,17 @@ import {
   getCurrentUserSS,
 } from "@/lib/userSS";
 import { fetchSS } from "@/lib/utilsSS";
+import { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 import { cookies } from "next/headers";
 import {
   FullEmbeddingModelResponse,
   checkModelNameIsValid,
-} from "../admin/models/embedding/embeddingModels";
-import { Persona } from "../admin/personas/interfaces";
-import { personaComparator } from "../admin/personas/lib";
+} from "@/app/admin/models/embedding/embeddingModels";
+import { Persona } from "@/app/admin/personas/interfaces";
+import { personaComparator } from "@/app/admin/personas/lib";
 import { ChatLayout } from "./ChatPage";
 import { ChatSession } from "./interfaces";
-import { Metadata } from "next";
 
 const META_TITLE = "Chat | Pridox";
 
@@ -41,7 +39,7 @@ export default async function Page({
     fetchSS("/manage/connector"),
     fetchSS("/manage/document-set"),
     fetchSS("/persona?include_default=true"),
-    fetchSS("/chat/get-user-chat-sessions"),
+    fetchSS("dashboard/chat/get-user-chat-sessions"),
     fetchSS("/query/valid-tags"),
     fetchSS("/secondary-index/get-embedding-models"),
   ];
@@ -144,9 +142,6 @@ export default async function Page({
 
   return (
     <>
-      {/* <InstantSSRAutoRefresh />
-      <ApiKeyModal /> */}
-
       {connectors.length === 0 ? (
         <WelcomeModal embeddingModelName={currentEmbeddingModelName} />
       ) : (

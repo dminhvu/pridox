@@ -35,7 +35,7 @@ export interface QuotesInfoPacket {
   quotes: Quote[];
 }
 
-export interface DanswerDocument {
+export interface PridoxDocument {
   document_id: string;
   link: string;
   source_type: ValidSources;
@@ -51,7 +51,7 @@ export interface DanswerDocument {
 }
 
 export interface DocumentInfoPacket {
-  top_documents: DanswerDocument[];
+  top_documents: PridoxDocument[];
   predicted_flow: FlowType | null;
   predicted_search: SearchType | null;
   time_cutoff: string | null;
@@ -67,7 +67,7 @@ export interface SearchResponse {
   suggestedFlowType: FlowType | null;
   answer: string | null;
   quotes: Quote[] | null;
-  documents: DanswerDocument[] | null;
+  documents: PridoxDocument[] | null;
   selectedDocIndices: number[] | null;
   error: string | null;
   messageId: number | null;
@@ -107,7 +107,7 @@ export interface SearchRequestArgs {
   persona: Persona;
   updateCurrentAnswer: (val: string) => void;
   updateQuotes: (quotes: Quote[]) => void;
-  updateDocs: (documents: DanswerDocument[]) => void;
+  updateDocs: (documents: PridoxDocument[]) => void;
   updateSelectedDocIndices: (docIndices: number[]) => void;
   updateSuggestedSearchType: (searchType: SearchType) => void;
   updateSuggestedFlowType: (flowType: FlowType) => void;

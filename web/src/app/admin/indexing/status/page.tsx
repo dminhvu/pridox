@@ -10,6 +10,11 @@ import { CCPairIndexingStatusTable } from "./CCPairIndexingStatusTable";
 import { AdminPageTitle } from "@/components/admin/Title";
 import Link from "next/link";
 import { Button, Text } from "@tremor/react";
+import { Metadata } from "next";
+
+// export const metadata: Metadata = {
+//   title: "Add Connector | Admin | Pridox",
+// };
 
 function Main() {
   const {
@@ -60,7 +65,7 @@ function Main() {
 
 export default function Status() {
   return (
-    <div className="mx-auto container">
+    <div className="container mx-auto">
       <AdminPageTitle
         icon={<NotebookIcon size={32} />}
         title="Existing Connectors"

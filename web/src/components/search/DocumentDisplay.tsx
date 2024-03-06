@@ -1,4 +1,4 @@
-import { DanswerDocument } from "@/lib/search/interfaces";
+import { PridoxDocument } from "@/lib/search/interfaces";
 import { DocumentFeedbackBlock } from "./DocumentFeedbackBlock";
 import { useState } from "react";
 import { PopupSpec } from "../admin/connectors/Popup";
@@ -108,7 +108,7 @@ export const buildDocumentSummaryDisplay = (
 export function DocumentMetadataBlock({
   document,
 }: {
-  document: DanswerDocument;
+  document: PridoxDocument;
 }) {
   return (
     <div className="flex flex-wrap gap-1">
@@ -132,7 +132,7 @@ export function DocumentMetadataBlock({
 }
 
 interface DocumentDisplayProps {
-  document: DanswerDocument;
+  document: PridoxDocument;
   messageId: number | null;
   documentRank: number;
   isSelected: boolean;

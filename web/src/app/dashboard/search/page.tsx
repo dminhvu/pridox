@@ -12,15 +12,15 @@ import { fetchSS } from "@/lib/utilsSS";
 import { Connector, DocumentSet, Tag, User, ValidSources } from "@/lib/types";
 import { cookies } from "next/headers";
 import { SearchType } from "@/lib/search/interfaces";
-import { Persona } from "../admin/personas/interfaces";
+import { Persona } from "@/app/admin/personas/interfaces";
 import { WelcomeModal } from "@/components/WelcomeModal";
 import { unstable_noStore as noStore } from "next/cache";
 import { InstantSSRAutoRefresh } from "@/components/SSRAutoRefresh";
-import { personaComparator } from "../admin/personas/lib";
+import { personaComparator } from "@/app/admin/personas/lib";
 import {
   FullEmbeddingModelResponse,
   checkModelNameIsValid,
-} from "../admin/models/embedding/embeddingModels";
+} from "@/app/admin/models/embedding/embeddingModels";
 import { SwitchModelModal } from "@/components/SwitchModelModal";
 
 export default async function Home() {
@@ -122,13 +122,6 @@ export default async function Home() {
 
   return (
     <>
-      {/* <Header user={user} /> */}
-      {/* <div className="m-3">
-        <HealthCheckBanner />
-      </div> */}
-      {/* <ApiKeyModal />
-      <InstantSSRAutoRefresh /> */}
-
       {connectors.length === 0 ? (
         <WelcomeModal embeddingModelName={currentEmbeddingModelName} />
       ) : (

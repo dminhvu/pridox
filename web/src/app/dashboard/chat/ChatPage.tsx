@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { ChatSession } from "./interfaces";
 import { Chat } from "./Chat";
 import { DocumentSet, Tag, User, ValidSources } from "@/lib/types";
-import { Persona } from "../admin/personas/interfaces";
+import { Persona } from "@/app/admin/personas/interfaces";
 import { HealthCheckBanner } from "@/components/health/healthcheck";
 import { ApiKeyModal } from "@/components/openai/ApiKeyModal";
 import { InstantSSRAutoRefresh } from "@/components/SSRAutoRefresh";
@@ -43,8 +43,6 @@ export function ChatLayout({
       <HealthCheckBanner />
 
       <div className="relative flex w-full bg-background text-default">
-        {/* <Sidebar user={user} /> */}
-
         <Chat
           existingChatSessionId={chatId}
           existingChatSessionPersonaId={selectedChatSession?.persona_id}

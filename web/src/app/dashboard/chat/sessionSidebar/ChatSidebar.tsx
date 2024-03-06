@@ -54,12 +54,12 @@ export const ChatSidebar = ({
       {
         icon: <HiOutlineChatBubbleOvalLeftEllipsis className="h-6 w-6" />,
         label: "Chat",
-        href: "/chat",
+        href: "/dashboard/chat",
       },
       {
         icon: <HiOutlineMagnifyingGlass className="h-6 w-6" />,
         label: "Search",
-        href: "/search",
+        href: "/dashboard/search",
       },
       {
         icon: <HiOutlineFolder className="h-6 w-6" />,

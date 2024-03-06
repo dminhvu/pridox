@@ -4,27 +4,32 @@ import { ConnectorIcon } from "@/components/icons/icons";
 import { SourceCategory, SourceMetadata } from "@/lib/search/interfaces";
 import { listSourceMetadata } from "@/lib/sources";
 import { Title, Text } from "@tremor/react";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Add Connector | Admin | Pridox",
+};
 
 function SourceTile({ sourceMetadata }: { sourceMetadata: SourceMetadata }) {
   return (
     <Link
       className={`flex 
+        w-40 
+        cursor-pointer 
         flex-col 
         items-center 
         justify-center 
-        p-4 
         rounded-lg 
-        w-40 
-        cursor-pointer
         bg-hover-light
+        p-4
         shadow-md
         hover:bg-hover
       `}
       href={sourceMetadata.adminUrl}
     >
       <SourceIcon sourceType={sourceMetadata.internalName} iconSize={24} />
-      <Text className="font-medium text-sm mt-2">
+      <Text className="mt-2 text-sm font-medium">
         {sourceMetadata.displayName}
       </Text>
     </Link>
@@ -42,19 +47,19 @@ export default function Page() {
   );
 
   return (
-    <div className="mx-auto container">
+    <div className="container mx-auto">
       <AdminPageTitle
         icon={<ConnectorIcon size={32} />}
         title="Add Connector"
       />
 
       <Text>
-        Connect Danswer to your organization&apos;s knowledge sources.
-        We&apos;ll automatically sync your data into Danswer, so you can find
-        exactly what you&apos;re looking for in one place.
+        Connect Pridox to your organization&apos;s knowledge sources. We&apos;ll
+        automatically sync your data into Pridox, so you can find exactly what
+        you&apos;re looking for in one place.
       </Text>
 
-      <div className="flex mt-8">
+      <div className="mt-8 flex">
         <Title>Import Knowledge</Title>
       </div>
       <Text>
@@ -70,7 +75,7 @@ export default function Page() {
         })}
       </div>
 
-      <div className="flex mt-8">
+      <div className="mt-8 flex">
         <Title>Setup Auto-Syncing from Apps</Title>
       </div>
       <Text>

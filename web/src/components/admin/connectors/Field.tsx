@@ -17,19 +17,19 @@ export function SectionHeader({
 }: {
   children: string | JSX.Element;
 }) {
-  return <div className="mb-4 font-bold text-lg">{children}</div>;
+  return <div className="mb-4 text-lg font-bold">{children}</div>;
 }
 
 export function Label({ children }: { children: string | JSX.Element }) {
-  return <div className="block font-medium text-base">{children}</div>;
+  return <div className="block text-base font-medium">{children}</div>;
 }
 
 export function SubLabel({ children }: { children: string | JSX.Element }) {
-  return <div className="text-sm text-subtle mb-2">{children}</div>;
+  return <div className="mb-2 text-sm text-subtle">{children}</div>;
 }
 
 export function ManualErrorMessage({ children }: { children: string }) {
-  return <div className="text-error text-sm mt-1">{children}</div>;
+  return <div className="mt-1 text-sm text-error">{children}</div>;
 }
 
 export function TextFormField({
@@ -43,6 +43,7 @@ export function TextFormField({
   disabled = false,
   autoCompleteDisabled = true,
   error,
+  className,
 }: {
   name: string;
   label: string;
@@ -54,6 +55,7 @@ export function TextFormField({
   disabled?: boolean;
   autoCompleteDisabled?: boolean;
   error?: string;
+  className?: string;
 }) {
   return (
     <div className="mb-4">
@@ -66,13 +68,17 @@ export function TextFormField({
         id={name}
         className={
           `
-        border 
-        border-border 
-        rounded 
+          ${className ? className : ""}
+        mt-1 
         w-full 
-        py-2 
-        px-3 
-        mt-1
+        rounded-xl  
+        border-2
+        border-transparent
+        active:border-primary-500
+        focus:border-primary-500
+        px-4
+        py-2.5
+        outline-none
         ${isTextArea ? " h-28" : ""}
       ` + (disabled ? " bg-background-strong" : " bg-background-emphasis")
         }
@@ -87,7 +93,7 @@ export function TextFormField({
         <ErrorMessage
           name={name}
           component="div"
-          className="text-red-500 text-sm mt-1"
+          className="mt-1 text-sm text-red-500"
         />
       )}
     </div>
@@ -113,7 +119,7 @@ export const BooleanFormField = ({
         <Field
           name={name}
           type="checkbox"
-          className="mx-3 px-5 w-3.5 h-3.5 my-auto"
+          className="mx-3 my-auto h-3.5 w-3.5 px-5"
           {...(onChange ? { onChange } : {})}
         />
         <div>
@@ -125,7 +131,7 @@ export const BooleanFormField = ({
       <ErrorMessage
         name={name}
         component="div"
-        className="text-red-500 text-sm mt-1"
+        className="mt-1 text-sm text-red-500"
       />
     </div>
   );
@@ -165,21 +171,21 @@ export function TextArrayField<T extends Yup.AnyObject>({
                       name={`${name}.${index}`}
                       id={name}
                       className={`
+                      mr-4 
+                      w-full 
+                      rounded 
                       border 
                       border-border 
                       bg-background 
-                      rounded 
-                      w-full 
-                      py-2 
                       px-3 
-                      mr-4
+                      py-2
                       `}
                       // Disable autocomplete since the browser doesn't know how to handle an array of text fields
                       autoComplete="off"
                     />
                     <div className="my-auto">
                       <FiX
-                        className="my-auto w-10 h-10 cursor-pointer hover:bg-hover rounded p-2"
+                        className="my-auto h-10 w-10 cursor-pointer rounded p-2 hover:bg-hover"
                         onClick={() => arrayHelpers.remove(index)}
                       />
                     </div>
@@ -187,7 +193,7 @@ export function TextArrayField<T extends Yup.AnyObject>({
                   <ErrorMessage
                     name={`${name}.${index}`}
                     component="div"
-                    className="text-error text-sm mt-1"
+                    className="mt-1 text-sm text-error"
                   />
                 </div>
               ))}
@@ -262,7 +268,7 @@ export function SelectorFormField({
       <ErrorMessage
         name={name}
         component="div"
-        className="text-red-500 text-sm mt-1"
+        className="mt-1 text-sm text-red-500"
       />
     </div>
   );

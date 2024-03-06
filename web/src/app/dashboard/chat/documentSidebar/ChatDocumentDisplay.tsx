@@ -3,7 +3,7 @@ import { SourceIcon } from "@/components/SourceIcon";
 import { PopupSpec } from "@/components/admin/connectors/Popup";
 import { DocumentFeedbackBlock } from "@/components/search/DocumentFeedbackBlock";
 import { DocumentUpdatedAtBadge } from "@/components/search/DocumentUpdatedAtBadge";
-import { DanswerDocument } from "@/lib/search/interfaces";
+import { PridoxDocument } from "@/lib/search/interfaces";
 import { FiInfo, FiRadio } from "react-icons/fi";
 import { DocumentSelector } from "./DocumentSelector";
 import {
@@ -12,7 +12,7 @@ import {
 } from "@/components/search/DocumentDisplay";
 
 interface DocumentDisplayProps {
-  document: DanswerDocument;
+  document: PridoxDocument;
   queryEventId: number | null;
   isAIPick: boolean;
   isSelected: boolean;

@@ -1,4 +1,4 @@
-import { DanswerDocument } from "@/lib/search/interfaces";
+import { PridoxDocument } from "@/lib/search/interfaces";
 import { useState } from "react";
 
 interface DocumentInfo {
@@ -21,12 +21,12 @@ async function fetchDocumentLength(documentId: string) {
 }
 
 export function useDocumentSelection(): [
-  DanswerDocument[],
-  (document: DanswerDocument) => void,
+  PridoxDocument[],
+  (document: PridoxDocument) => void,
   () => void,
   number
 ] {
-  const [selectedDocuments, setSelectedDocuments] = useState<DanswerDocument[]>(
+  const [selectedDocuments, setSelectedDocuments] = useState<PridoxDocument[]>(
     []
   );
   const [totalTokens, setTotalTokens] = useState(0);
@@ -35,7 +35,7 @@ export function useDocumentSelection(): [
   );
   const documentIdToLength = new Map<string, number>();
 
-  function toggleDocumentSelection(document: DanswerDocument) {
+  function toggleDocumentSelection(document: PridoxDocument) {
     const documentId = document.document_id;
     const isAdding = !selectedDocumentIds.includes(documentId);
     if (!isAdding) {

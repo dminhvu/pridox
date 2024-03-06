@@ -4,10 +4,10 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Metadata, Viewport } from "next";
 import { Roboto } from "next/font/google";
 
-const roboto = Roboto({
-  weight: "500",
+const inter = Roboto({
   subsets: ["latin"],
   display: "swap",
+  weight: ["100", "300", "400", "700", "900"],
 });
 
 export const viewport: Viewport = {
@@ -131,7 +131,7 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${roboto.className} bg-background text-default`}>
+        <body className={`${inter.className} bg-background text-default`}>
           {children}
         </body>
       </html>

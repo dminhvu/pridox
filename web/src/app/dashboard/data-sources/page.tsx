@@ -17,7 +17,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { fetchValidFilterInfo } from "@/lib/search/utilsSS";
-import { Explorer } from "../admin/documents/explorer/Explorer";
+import { Explorer } from "@/app/admin/documents/explorer/Explorer";
 import { DataTable } from "@/components/DataTable";
 import {
   Select,

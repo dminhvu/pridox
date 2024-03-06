@@ -41,7 +41,7 @@ export function ChatSessionDisplay({
             if (response.ok) {
               setIsDeletionModalVisible(false);
               // go back to the main page
-              router.push("/chat");
+              router.push("/dashboard/chat");
             } else {
               alert("Failed to delete chat session");
             }

@@ -2,7 +2,7 @@
 
 import React from "react";
 import {
-  DanswerDocument,
+  PridoxDocument,
   SearchResponse,
   Quote,
   FlowType,
@@ -19,7 +19,7 @@ import { AlertIcon } from "../icons/icons";
 import { removeDuplicateDocs } from "@/lib/documentUtils";
 
 const getSelectedDocumentIds = (
-  documents: DanswerDocument[],
+  documents: PridoxDocument[],
   selectedIndices: number[]
 ) => {
   const selectedDocumentIds = new Set<string>();
@@ -79,9 +79,9 @@ export const SearchResultsDisplay = ({
     return (
       <div className="mt-4">
         {error ? (
-          <div className="text-error text-sm">
+          <div className="text-sm text-error">
             <div className="flex">
-              <AlertIcon size={16} className="text-error my-auto mr-1" />
+              <AlertIcon size={16} className="my-auto mr-1 text-error" />
               <p className="italic">{error}</p>
             </div>
           </div>
@@ -116,15 +116,15 @@ export const SearchResultsDisplay = ({
     <>
       {popup}
       {shouldDisplayQA && (
-        <div className="min-h-[16rem] p-4 border-2 border-border rounded-lg relative">
+        <div className="relative min-h-[16rem] rounded-lg border-2 border-border p-4">
           <div>
-            <div className="flex mb-1">
-              <h2 className="text-emphasis font-bold my-auto mb-1 w-full">
+            <div className="mb-1 flex">
+              <h2 className="my-auto mb-1 w-full font-bold text-emphasis">
                 AI Answer
               </h2>
             </div>
 
-            <div className="mb-2 pt-1 border-t border-border w-full">
+            <div className="mb-2 w-full border-t border-border pt-1">
               <AnswerSection
                 answer={answer}
                 quotes={quotes}
@@ -139,7 +139,7 @@ export const SearchResultsDisplay = ({
             </div>
 
             {quotes !== null && answer && !isPersona && (
-              <div className="pt-1 border-t border-border w-full">
+              <div className="w-full border-t border-border pt-1">
                 <QuotesSection
                   quotes={dedupedQuotes}
                   isFetching={isFetching}
@@ -147,7 +147,7 @@ export const SearchResultsDisplay = ({
                 />
 
                 {searchResponse.messageId !== null && (
-                  <div className="absolute right-3 bottom-3">
+                  <div className="absolute bottom-3 right-3">
                     <QAFeedbackBlock
                       messageId={searchResponse.messageId}
                       setPopup={setPopup}
@@ -162,7 +162,7 @@ export const SearchResultsDisplay = ({
 
       {documents && documents.length > 0 && (
         <div className="mt-4">
-          <div className="font-bold text-emphasis border-b mb-3 pb-1 border-border text-lg">
+          <div className="mb-3 border-b border-border pb-1 text-lg font-bold text-emphasis">
             Results
           </div>
           {removeDuplicateDocs(documents).map((document, ind) => (
