@@ -39,7 +39,7 @@ export default async function Page({
     fetchSS("/manage/connector"),
     fetchSS("/manage/document-set"),
     fetchSS("/persona?include_default=true"),
-    fetchSS("dashboard/chat/get-user-chat-sessions"),
+    fetchSS("/chat/get-user-chat-sessions"),
     fetchSS("/query/valid-tags"),
     fetchSS("/secondary-index/get-embedding-models"),
   ];
@@ -86,7 +86,7 @@ export default async function Page({
     chatSessions = (await chatSessionsResponse.json()).sessions;
   } else {
     console.log(
-      `Failed to fetch chat sessions - ${chatSessionsResponse?.text()}`
+      `Failed to fetch chat sessions - ${await chatSessionsResponse?.text()}`
     );
   }
   // Larger ID -> created later
@@ -97,7 +97,7 @@ export default async function Page({
     documentSets = await documentSetsResponse.json();
   } else {
     console.log(
-      `Failed to fetch document sets - ${documentSetsResponse?.status}`
+      `Failed to fetch document sets - ${await documentSetsResponse?.status}`
     );
   }
 

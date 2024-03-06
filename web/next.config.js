@@ -6,7 +6,7 @@ const version = env_version || package_version;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  // output: "standalone",
   images: {
     remotePatterns: [
       {
@@ -21,7 +21,7 @@ const nextConfig = {
     // In production, something else (nginx in the one box setup) should take
     // care of this rewrite. TODO (chris): better support setups where
     // web_server and api_server are on different machines.
-    if (process.env.NODE_ENV === "production")
+    if (process.env.NODE_ENV === "production") {
       return {
         fallback: [
           {
@@ -34,19 +34,20 @@ const nextConfig = {
           },
         ],
       };
-
-    return {
-      fallback: [
-        {
-          source: "/api/:path*",
-          destination: `${process.env.NEXT_PUBLIC_INTERNAL_URL || ""}/:path*`, // Proxy to Backend
-        },
-        {
-          source: "/:path*",
-          destination: `${process.env.NEXT_PUBLIC_INTERNAL_URL || ""}/:path*`, // Proxy to Backend
-        },
-      ],
-    };
+    } else {
+      return {
+        fallback: [
+          // {
+          //   source: "/api/:path*",
+          //   destination: `${process.env.NEXT_PUBLIC_INTERNAL_URL || ""}/:path*`, // Proxy to Backend
+          // },
+          {
+            source: "/:path*",
+            destination: `${process.env.NEXT_PUBLIC_INTERNAL_URL || ""}/:path*`, // Proxy to Backend
+          },
+        ],
+      };
+    }
   },
   redirects: async () => {
     // In production, something else (nginx in the one box setup) should take

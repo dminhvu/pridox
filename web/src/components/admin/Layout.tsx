@@ -1,10 +1,5 @@
 import { AdminSidebar } from "@/components/admin/connectors/AdminSidebar";
-import {
-  RobotIcon,
-  ThumbsUpIcon,
-  UsersIcon,
-  ZoomInIcon,
-} from "@/components/icons/icons";
+import { RobotIcon, UsersIcon } from "@/components/icons/icons";
 import { User } from "@/lib/types";
 import {
   AuthTypeMetadata,
@@ -17,13 +12,8 @@ import { FiCpu, FiPackage, FiSlack } from "react-icons/fi";
 import {
   IoArrowBack,
   IoBookmark,
-  IoBookmarkOutline,
   IoCloudUpload,
-  IoCloudUploadOutline,
-  IoCompass,
-  IoCompassOutline,
   IoDocumentText,
-  IoDocumentTextOutline,
   IoHeart,
   IoSearch,
 } from "react-icons/io5";
